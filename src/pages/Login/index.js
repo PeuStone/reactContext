@@ -7,10 +7,13 @@ import {
 import {
   Input,
   InputLabel,
-  InputAdornment 
+  InputAdornment
 } from '@material-ui/core';
+import { useNavigate } from 'react-router-dom';
 
-function Login() {
+function Login({ nome, setNome, saldo, setSaldo }) {
+  const navegar = useNavigate();
+
   return (
     <Container>
       <Titulo>
@@ -21,6 +24,8 @@ function Login() {
           Nome
         </InputLabel>
         <Input
+          value={nome}
+          onChange={(evento) => setNome(evento.target.value)}
           type="text"
         />
       </InputContainer>
@@ -29,17 +34,20 @@ function Login() {
           Saldo
         </InputLabel>
         <Input
-        type="number"
-        startAdornment={
-          <InputAdornment position="start">
-            R$
-          </InputAdornment>
-        }
-      />
+          type="number"
+          value={saldo}
+          onChange={(evento) => setSaldo(evento.target.value)}
+          startAdornment={
+            <InputAdornment position="start">
+              R$
+            </InputAdornment>
+          }
+        />
       </InputContainer>
       <Button
         variant="contained"
         color="primary"
+        onClick={() => navegar('/feira')}
       >
         Avançar
       </Button>
